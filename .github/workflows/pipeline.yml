@@ -39,14 +39,6 @@ jobs:
     
     - name: "Print Terraform version"
       run: terraform --version
-    
-    - name: Setup Ansible
-      uses: alex-oleshkevich/setup-ansible@VERSION
-      with: 
-        version: "9.3.0"
-
-    - name: "Print Ansible version"
-      run: ansible-playbook --version    
         
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
