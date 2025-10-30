@@ -31,6 +31,22 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r app/requirements.txt
         pip install pytest  
+    
+    - name: Setup Terraform 
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.1.7"
+    
+    - name: "Print Terraform version"
+      run: terraform --version
+    
+    - name: Setup Ansible
+      uses: alex-oleshkevich/setup-ansible@VERSION
+      with: 
+        version: "9.3.0"
+
+    - name: "Print Ansible version"
+      run: ansible-playbook --version    
         
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
