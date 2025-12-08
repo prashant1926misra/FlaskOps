@@ -1,6 +1,2 @@
-variable "region" {
-  description = "The AWS region where the infrastructure will be deployed."
-  type        = string
-  default     = "ap-south-1"   
-}
+variable "region"   { type = string }
 variable "key_name"   { type = string }

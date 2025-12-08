@@ -10,7 +10,7 @@ terraform {
   backend "s3" {
     bucket = "flaskops-bucket"
     key = "terraform/flaskops.tfstate" # Path to the terraform state file
-    region = var.region
+    region = "ap-south-1"
     use_lockfile = true
     
   }
