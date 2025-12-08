@@ -29,14 +29,6 @@ jobs:
         pip install -r app/requirements.txt
         pip install pytest
 
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v3
-      with:
-        terraform_version: "1.14.1"
-
-    - name: Print Terraform version
-      run: terraform --version
-
   configure_AWS:
     needs: setup_environment
     runs-on: ubuntu-latest
@@ -63,6 +55,14 @@ jobs:
         role-session-name: sample-role
         aws-region: ${{ env.AWS_REGION }}
 
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: "1.14.1"
+
+    - name: Print Terraform version
+      run: terraform --version
+     
     - name: Terraform Init
       run: terraform init
       working-directory: ./terraform
