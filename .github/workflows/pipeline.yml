@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: FlaskOps Pipeline
 
 on:
   push:
@@ -12,34 +12,37 @@ permissions:
   id-token: write
   contents: read
 
-
 jobs:
-  test:
+  setup_environment:
     runs-on: ubuntu-latest
-
     steps:
-    - name: checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: '3.9'
-    
-    - name: Install Python dependencies 
+
+    - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r app/requirements.txt
-        pip install pytest  
-    
-    - name: Setup Terraform 
+        pip install pytest
+
+    - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
       with:
-        terraform_version: "1.13.4"
-    
-    - name: "Print Terraform version"
+        terraform_version: "1.14.1"
+
+    - name: Print Terraform version
       run: terraform --version
-        
+
+  configure_AWS:
+    needs: setup_environment
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
@@ -47,4 +50,23 @@ jobs:
         role-session-name: sample-role
         aws-region: ${{ env.AWS_REGION }}
 
+  terraform_deploy:
+    needs: configure_AWS
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
 
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::703623468959:role/GitHubOIDC_FlaskOps
+        role-session-name: sample-role
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: Terraform Init
+      run: terraform init
+      working-directory: ./terraform
+
+    - name: Terraform Plan
+      run: terraform plan
+      working-directory: ./terraform
