@@ -63,13 +63,13 @@ jobs:
     - name: Print Terraform version
       run: terraform --version
     
-    - name: Unlock state file 
-      run: terraform force-unlock 3354e187-5f4b-31a6-e0f2-d359ff77c37a
-      
     - name: Terraform Init
       run: terraform init
       working-directory: ./terraform
 
+    - name: Unlock state file 
+      run: terraform force-unlock 3354e187-5f4b-31a6-e0f2-d359ff77c37a
+      
     - name: Terraform Plan
       run: terraform plan
       working-directory: ./terraform
