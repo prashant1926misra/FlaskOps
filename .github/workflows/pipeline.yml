@@ -92,9 +92,10 @@ jobs:
     needs: terraform_deploy
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v4
       -env:
         OUTPUT1: ${{needs.terraform_deploy.outputs.output1}}
        run: echo "$OUTPUT1"
-       
+
 
 
