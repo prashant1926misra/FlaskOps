@@ -1,2 +1,9 @@
-variable "region"   { type = string }
-variable "key_name"   { type = string }
+variable "region" {
+  type    = string
+  default = "ap-south-1"
+}
+
+variable "key_name" {
+  type    = string
+  default = "flaskops"
+}
