@@ -67,9 +67,9 @@ jobs:
       run: terraform init
       working-directory: ./terraform
 
-    - name: Unlock state file  
-      run: terraform force-unlock -force 5d64f780-a75f-5ba7-13e1-bee474901783
-      working-directory: ./terraform
+    #- name: Unlock state file  
+      #run: terraform force-unlock -force 5d64f780-a75f-5ba7-13e1-bee474901783
+    #  working-directory: ./terraform
       
     - name: Terraform Plan
       run: terraform plan
