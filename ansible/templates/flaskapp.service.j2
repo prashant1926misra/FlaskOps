@@ -1,0 +1,17 @@
+[Unit]
+Description=Flask Application Service
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/flaskops
+Environment="PATH=/home/ubuntu/flaskops/venv/bin"
+ExecStart=/home/ubuntu/flaskops/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+TimeoutStopSec=5
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target
