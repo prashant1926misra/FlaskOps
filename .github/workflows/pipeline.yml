@@ -81,7 +81,8 @@ jobs:
 
     - name: Output Public IP address
       id: get_ip
-      run: echo "public_ip_address=$(terraform output public_ip_address)" >> $GITHUB_OUTPUT
+      run: echo "public_ip_address=$(terraform output -raw public_ip_address)" >> $GITHUB_OUTPUT
+      working-directory: ./terraform
     
     outputs:
       output1: ${{ steps.get_ip.outputs.public_ip_address }}
