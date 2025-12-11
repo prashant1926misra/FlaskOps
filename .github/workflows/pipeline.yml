@@ -127,18 +127,24 @@ jobs:
       env:
         OUTPUT1: ${{needs.terraform_deploy.outputs.output1}}
       run: echo "$OUTPUT1"
+
+    - name: Authenticate with EC2 instance
+      uses: webfactory/ssh-agent@v0.9.0 
+      with:
+         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
     
     - name: Run Ansible Playbook with dynamic ip address
       working-directory: ./ansible
       env:
          OUTPUT1: ${{ needs.terraform_deploy.outputs.output1 }}
+         SERVER_API_KEY: ${{ secrets.SSH_PRIVATE_KEY }} 
       run: |
         set -e
         if [ -z "$OUTPUT1" ]; then
            echo "Error: OUTPUT1 is empty"
            exit 1
         fi
-        ansible-playbook -i "$OUTPUT1", playbook.yml
+        ansible-playbook -i "$OUTPUT1", playbook.yml --private-key ~/.ssh/private.key
       
       
       
