@@ -17,8 +17,8 @@
         dest: "{{ item.dest }}"
         mode: '0600'
       loop:
-        - { src: './app/app.py', dest: '/home/ubuntu/flaskops' }
-        - { src: './app/requirements.txt', dest: '/home/ubuntu/flaskops' }
+        - { src: '../app/app.py', dest: '/home/ubuntu/flaskops' }
+        - { src: '../app/requirements.txt', dest: '/home/ubuntu/flaskops' }
 
 # --- PLAY 2 ---
 - name: Install Python 3, pip and dependencies
