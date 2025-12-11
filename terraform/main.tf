@@ -62,6 +62,8 @@ module "ec2_instance" {
   ami = data.aws_ami.ubuntu.id
   key_name      = var.key_name
   subnet_id     = module.vpc.public_subnets[0]
+  vpc_security_group_ids = [module.flaskops_sg.security_group_id]
+
   associate_public_ip_address = true 
 
   tags = {
