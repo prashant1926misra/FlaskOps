@@ -85,19 +85,50 @@ jobs:
     
     outputs:
       output1: ${{ steps.get_ip.outputs.public_ip_address }}
+
+    
  
  
-  retrieve_ec2_public_ip:
-    name: Retrieve EC2 Public IP address
-    needs: terraform_deploy
+  #retrieve_ec2_public_ip:
+    #name: Retrieve EC2 Public IP address
+    #needs: terraform_deploy
+    #runs-on: ubuntu-latest
+    #steps:
+    #- uses: actions/checkout@v4
+
+    #- name: Print EC2 public IP
+    #  env:
+    #    OUTPUT1: ${{needs.terraform_deploy.outputs.output1}}
+    #  run: echo "$OUTPUT1"
+
+  ansible_deploy:
+    needs:  [configure_AWS, terraform_deploy]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
 
-    - name: Print EC2 public IP
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::703623468959:role/GitHubOIDC_FlaskOps
+        role-session-name: sample-role
+        aws-region: ${{ env.AWS_REGION }}
+
+    - name: install ansible
+      uses: alex-oleshkevich/setup-ansible@v1.0.1
+      with: 
+          version: '9.3.0'
+    
+    - name: Print Ansible version
+      run: ansible --version
+
+    - name: Print EC2 instance public ip address
       env:
         OUTPUT1: ${{needs.terraform_deploy.outputs.output1}}
       run: echo "$OUTPUT1"
+      
+      
+
 
 
 
