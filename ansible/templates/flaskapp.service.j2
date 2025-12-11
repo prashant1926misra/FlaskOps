@@ -7,7 +7,7 @@ User=ubuntu
 Group=ubuntu
 WorkingDirectory=/home/ubuntu/flaskops
 Environment="PATH=/home/ubuntu/flaskops/venv/bin"
-ExecStart=/home/ubuntu/flaskops/venv/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+ExecStart=/home/ubuntu/flaskops/venv/bin/python /home/ubuntu/flaskops/app.py
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=always
 TimeoutStopSec=5
