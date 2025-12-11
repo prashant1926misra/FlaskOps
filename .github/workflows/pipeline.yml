@@ -136,7 +136,7 @@ jobs:
            echo "Error: OUTPUT1 is empty"
            exit 1
         fi
-        ansible-playbook -i "$OUTPUT1", playbook.yml
+        ansible-playbook -i "$OUTPUT1" playbook.yml
       
       
       
