@@ -129,8 +129,15 @@ jobs:
       run: echo "$OUTPUT1"
     
     - name: Run Ansible Playbook with dynamic ip address
-      run: ansible-playbook -i ${OUTPUT1}, playbook.yml
       working-directory: ./ansible
+      run: |
+        set -e
+        if [-z "$OUTPUT1" ]; then
+           echo "Error: OUTPUT1 is empty"
+           exit 1
+        fi
+        ansible-playbook -i $OUTPUT1, playbook.yml
+      
       
       
 
