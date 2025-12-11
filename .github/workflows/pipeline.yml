@@ -130,6 +130,8 @@ jobs:
     
     - name: Run Ansible Playbook with dynamic ip address
       working-directory: ./ansible
+      env:
+         OUTPUT1: ${{ needs.terraform_deploy.outputs.output1 }}
       run: |
         set -e
         if [ -z "$OUTPUT1" ]; then
