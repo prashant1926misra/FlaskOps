@@ -127,6 +127,10 @@ jobs:
       env:
         OUTPUT1: ${{needs.terraform_deploy.outputs.output1}}
       run: echo "$OUTPUT1"
+    
+    - name: Run Ansible Playbook with dynamic ip address
+      run: ansible-playbook -i ${OUTPUT1}, playbook.yml
+      working-directory: ./ansible
       
       
 
