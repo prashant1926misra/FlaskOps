@@ -154,8 +154,8 @@ jobs:
       working-directory: ./app/tests
       run: |
         pip install requests
-        python tests/validate.py
-        python tests/test.py
+        python validate.py
+        python test.py
 
       
       
