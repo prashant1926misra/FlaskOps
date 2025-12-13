@@ -1,4 +1,4 @@
-# FlaskOps CI/CD Workflow on AWS EC2
+# FlaskOps Deployment Workflow on AWS EC2
 
 
 ## Project Overview
