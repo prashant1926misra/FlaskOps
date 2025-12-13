@@ -78,6 +78,7 @@ FlaskOps/
 ## Screenshots 
 
 ### GitHub Actions Workflow Run
+<img width="1865" height="506" alt="image" src="https://github.com/user-attachments/assets/bed9f96d-a02e-4110-b9e3-a4646c2a9755" />
 
 ### Terraform Output
 <img width="1130" height="132" alt="Screenshot 2025-12-13 162646" src="https://github.com/user-attachments/assets/768b82f7-d851-46e5-bbe8-1ac657f69e2d" />
