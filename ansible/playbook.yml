@@ -8,14 +8,16 @@
         path: /home/ubuntu/flaskops
         state: directory
         mode: '0755'
-        owner: root
-        group: root
+        owner: ubuntu
+        group: ubuntu
 
     - name: Copy app.py and requirements.txt
       ansible.builtin.copy:
         src: "{{ item.src }}"
         dest: "{{ item.dest }}"
-        mode: '0600'
+        mode: '0644'
+        owner: ubuntu
+        group: ubuntu
       loop:
         - { src: '../app/app.py', dest: '/home/ubuntu/flaskops' }
         - { src: '../app/requirements.txt', dest: '/home/ubuntu/flaskops' }
