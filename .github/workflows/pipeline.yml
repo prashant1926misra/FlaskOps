@@ -146,10 +146,12 @@ jobs:
   Healtchecks:
     needs: ansible_deploy
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v4
 
     - name: run validation and test scripts
+      working-directory: ./app/tests
       run: |
         pip install requests
         python tests/validate.py
