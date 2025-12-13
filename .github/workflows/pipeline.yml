@@ -144,8 +144,8 @@ jobs:
         ansible-playbook -i "$OUTPUT1", playbook.yml -u ubuntu
 
   Healtchecks:
-    needs: setup_environment
-    runs-on: ansible_deploy
+    needs: ansible_deploy
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
 
