@@ -143,10 +143,17 @@ jobs:
         fi
         ansible-playbook -i "$OUTPUT1", playbook.yml -u ubuntu
 
-    #- name: Validate ECS Service Health
-    #  run: |
-    #    pip install requests
-    #    python tests/validate.py
+  Healtchecks:
+    needs: setup_environment
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: run validation and test scripts
+      run: |
+        pip install requests
+        python tests/validate.py
+        python tests/test.py
 
       
       
