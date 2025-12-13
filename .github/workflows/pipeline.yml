@@ -155,7 +155,7 @@ jobs:
       env:
         PYTHONPATH: ${{ github.workspace }}/app
       run: |
-        pip install -r ../requirements.txt pytes
+        pip install -r ../requirements.txt pytest
         python -m pytest
 
       
