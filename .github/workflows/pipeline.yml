@@ -152,6 +152,8 @@ jobs:
 
     - name: run validation and test scripts
       working-directory: ./app/tests
+      env:
+        PYTHONPATH: ${{ github.workspace }}/app
       run: |
         pip install requests
         python validate.py
