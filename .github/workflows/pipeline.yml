@@ -145,7 +145,7 @@ jobs:
 
   Healtchecks:
     needs: setup_environment
-    runs-on: ubuntu-latest
+    runs-on: ansible_deploy
     steps:
     - uses: actions/checkout@v4
 
