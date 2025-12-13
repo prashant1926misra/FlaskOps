@@ -155,9 +155,8 @@ jobs:
       env:
         PYTHONPATH: ${{ github.workspace }}/app
       run: |
-        pip install requests
-        python validate.py
-        python test.py
+        pip install -r ../requirements.txt pytes
+        python -m pytest
 
       
       
