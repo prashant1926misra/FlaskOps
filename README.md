@@ -5,7 +5,7 @@
 This project demonstrates an end-to-end CI/CD pipeline for deploying a Python Flask app on AWS EC2. The pipeline automatically provisions infrastructure with Terraform, configures the server with Ansible, deploys the Flask app, and validates endpoints using Python scripts.
 
 
-## Architecture
+## Workflow Diagram
 
 ```text
 GitHub Repository (Flask App + Workflow)
